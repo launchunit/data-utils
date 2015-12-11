@@ -1,0 +1,19 @@
+{
+  "name": "data-utils",
+  "main": "index.js",
+  "author": "Karan Sakhuja <kevin.sakhuja@gmail.com> (http://kevify.com)",
+  "dependencies": {
+    "append-stream": "^1.2.2",
+    "async": "^1.5.0",
+    "csv-parser": "^1.8.1",
+    "event-stream": "^3.3.2",
+    "fs-extra": "^0.26.2",
+    "got": "^5.1.0",
+    "json2csv-stream": "^0.1.3",
+    "lodash": "^3.10.1",
+    "log-update": "^1.0.2",
+    "mongodb": "^2.0.49",
+    "parse-filepath": "^0.6.3",
+    "recursive-readdir": "^1.2.1"
+  }
+}

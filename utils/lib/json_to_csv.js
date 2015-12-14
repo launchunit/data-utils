@@ -14,8 +14,8 @@ const fs = require('fs-extra'),
  **/
 module.exports = function(opts) {
 
-  var Count = 0;
   console.time('Processing Time');
+  var Count = 0;
 
 
   // Make sure the directory exits
@@ -47,7 +47,7 @@ module.exports = function(opts) {
       .pipe(writer)
       .on('finish', function() {
         console.timeEnd('Processing Time');
-        return resolve();
+        return resolve(Count);
       })
       .on('error', function(err) {
         return reject(err);

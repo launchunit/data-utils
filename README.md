@@ -1,6 +1,7 @@
 # Data-Utils
 
 1. Directory `zipcodes` contains all the zipcodes.
+
 2. Directory `utils` contains data utilites.
 
 ```js
@@ -32,4 +33,12 @@ require('./utils').processFile({
   task: function(i, cb) { return cb() }, (Optional)
   taskConcurrency: 50 (Optional)
 });
+
+const File = require('./utils').newFile({
+  outputFile: './output/results.json',
+});
+// Callback is optional
+File.write('some string');
+File.write({ a:1, b: 2 });
+File.end();
 ```

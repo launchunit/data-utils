@@ -9,6 +9,8 @@ const es = require('event-stream'),
 
 /**
  * @params opts.maxRows - Default 100000
+ * @params opts.inputFile: './output/results.json',
+ * @params opts.outputFile: './output/output/op_${count}.json'
  **/
 module.exports = function(opts) {
 
@@ -16,6 +18,7 @@ module.exports = function(opts) {
 
   var Count = -1, splitCount = 0;
   opts.maxRows = opts.maxRows || 10000;
+
 
   // Make sure the directory exits
   fs.ensureDirSync(
@@ -70,7 +73,7 @@ module.exports = function(opts) {
       }))
       .on('end', function() {
         console.timeEnd('Processing Time');
-        return resolve();
+        return resolve(splitCount);
       })
       .on('error', function(err) {
         return reject(err);

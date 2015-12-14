@@ -14,8 +14,8 @@ const fs = require('fs-extra'),
  **/
 module.exports = function(opts) {
 
-  var Count = 0;
   console.time('Processing Time');
+  var Count = 0;
 
 
   // Make sure the directory exits

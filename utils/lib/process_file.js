@@ -88,7 +88,7 @@ module.exports = function(opts) {
       .pipe(writer)
       .on('finish', function() {
         console.timeEnd('Processing Time');
-        return resolve();
+        return resolve(Count);
       })
       .on('error', function(err) {
         return reject(err);

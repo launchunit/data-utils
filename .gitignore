@@ -34,3 +34,4 @@ email/views_prod/*
 dist/*
 config/*
 _dist/*
+output/*

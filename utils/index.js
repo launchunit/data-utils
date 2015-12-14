@@ -4,28 +4,29 @@
 
   require('./utils').jsonToCsv({
     separator: '|', (Optional)
-    inputFile: './data/results.json',
-    outputFile: './data/results.csv'
+    inputFile: './output/results.json',
+    outputFile: './output/results.csv'
   });
 
   require('./utils').csvToJson({
     separator: '|', (Optional)
-    inputFile: './data/results.csv',
-    outputFile: './data/results.json'
+    inputFile: './output/results.csv',
+    outputFile: './output/results.json'
   });
 
   require('./utils').fileSplitter({
     maxRows: 100000, (Optional)
-    inputFile: './data/results.json',
-    outputFile: './data/output/op_${count}.json'
+    inputFile: './output/results.json',
+    outputFile: './output/output/op_${count}.json'
   });
 
   require('./utils').processFile({
-    inputFile: './data/results.json',
-    outputFile: './data/results2.json',
+    inputFile: './output/results.json',
+    outputFile: './output/results2.json',
     unique: 'id', // Key for unique-ness (Optional)
     mapItem: function(i) { return i; } (Optional)
     task: function(i, cb) { return cb() }, (Optional)
+    taskConcurrency: 50 (Optional)
   });
  *
 **/

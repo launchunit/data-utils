@@ -11,8 +11,9 @@ const fs = require('fs-extra'),
  * @param opts.inputFile
  * @param opts.outputFile
  * @param opts.unique (Optional)
- * @param opts.mapItem (Optional)
+ * @param opts.mapItem (Optional) // (if return null, then not passed down the pipeline)
  * @param opts.task (Optional) - return cb();
+ * @param opts.taskConcurrency (Optional) Default = 10
  **/
 module.exports = function(opts) {
 
@@ -34,6 +35,7 @@ module.exports = function(opts) {
 
   // Create a Map for Unique Keys
   const UNIQUE_KEYS = new Set();
+  const TASK_CONCURRENCY = opts.taskConcurrency || 10;
 
 
   // Create a Queue for task
@@ -47,7 +49,7 @@ module.exports = function(opts) {
         return cb();
       });
     });
-  }, 50);
+  }, TASK_CONCURRENCY);
 
 
   return new Promise(function(resolve, reject) {
@@ -67,7 +69,10 @@ module.exports = function(opts) {
         }
 
         // Perform Action on Each Item
-        if (opts.mapItem) item = opts.mapItem(item);
+        if (opts.mapItem) {
+          item = opts.mapItem(item);
+          if (item === null) return cb();
+        }
 
         // Perform some task
         if (opts.task) {

@@ -1,31 +1,26 @@
 # Data-Utils
 
-1. Directory `zipcodes` contains all the zipcodes.
-
-2. Directory `utils` contains data utilites.
-
 ```js
-// NOTE: Everything Returns a Promise
-
-require('./utils').jsonToCsv({
+// NOTE: Everything Returns a Promise, unless stated
+require('./').jsonToCsv({
   separator: '|', (Optional)
   inputFile: './output/results.json',
   outputFile: './output/results.csv'
 });
 
-require('./utils').csvToJson({
+require('./').csvToJson({
   separator: '|', (Optional)
   inputFile: './output/results.csv',
   outputFile: './output/results.json'
 });
 
-require('./utils').fileSplitter({
+require('./').fileSplitter({
   maxRows: 100000, (Optional)
   inputFile: './output/results.json',
   outputFile: './output/output/op_${count}.json'
 });
 
-require('./utils').processFile({
+require('./').processFile({
   inputFile: './output/results.json',
   outputFile: './output/results2.json',
   unique: 'id', // Key for unique-ness (Optional)
@@ -34,11 +29,16 @@ require('./utils').processFile({
   taskConcurrency: 50 (Optional)
 });
 
-const File = require('./utils').newFile({
+// Not a Promise
+const File = require('./').newFile({
   outputFile: './output/results.json',
 });
 // Callback is optional
 File.write('some string');
 File.write({ a:1, b: 2 });
 File.end();
+
+// Zipcodes
+require('./').zipcodes.stateMap;
+require('./').zipcodes.codes;
 ```

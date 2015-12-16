@@ -1,42 +1,50 @@
 
-process.chdir(__dirname);
-
 /**
- * Utils Usage
- **/
+ * Examples
 
-Promise.resolve()
-
-.then(function() {
-  return require('./utils').processFile({
+  require('./utils').jsonToCsv({
+    separator: '|', (Optional)
     inputFile: './output/results.json',
-    outputFile: './output/results_processed.json',
-    // unique: 'link',
-    mapItem: function(i) {
-      if (i.updatedAt) i.updatedAt = new Date(i.updatedAt);
-      if (i.createdAt) i.createdAt = new Date(i.createdAt);
-      if (i.dateAvailable) i.dateAvailable = new Date(i.dateAvailable);
-      return i;
-    }
+    outputFile: './output/results.csv'
   });
-})
 
-.catch(function(err) {
-  console.log(err);
-});
+  require('./utils').csvToJson({
+    separator: '|', (Optional)
+    inputFile: './output/results.csv',
+    outputFile: './output/results.json'
+  });
 
+  require('./utils').fileSplitter({
+    maxRows: 100000, (Optional)
+    inputFile: './output/results.json',
+    outputFile: './output/output/op_${count}.json'
+  });
 
-/**
- * NewFile Usage
+  require('./utils').processFile({
+    inputFile: './output/results.json',
+    outputFile: './output/results2.json',
+    unique: 'id', // Key for unique-ness (Optional)
+    mapItem: function(i) { return i; } (Optional)
+    task: function(i, cb) { return cb() }, (Optional)
+    taskConcurrency: 50 (Optional)
+  });
+
+  const File = require('./utils').newFile({
+    outputFile: './output/results.json',
+  });
+  // Callback is optional
+  File.write('some string');
+  File.write({ a:1, b: 2 });
+  File.end();
  *
- * NOTE: Does not return a promise
- **/
+**/
 
-// const File = require('./utils').newFile({
-//   outputFile: './output/results.json'
-// });
+// Data Utils
+exports.csvToJson = require('./lib/csv_to_json');
+exports.jsonToCsv = require('./lib/json_to_csv');
+exports.fileSplitter = require('./lib/file_splitter');
+exports.processFile = require('./lib/process_file');
+exports.newFile = require('./lib/new_file');
 
-// File.write('Hello');
-// File.write('World');
-// File.write({ name: 'Karan' });
-// File.end();
+// Zipcodes
+exports.zipcodes = require('./lib/zipcodes');

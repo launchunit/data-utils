@@ -1,5 +1,6 @@
 {
   "name": "data-utils",
+  "version": "1.0.0",
   "main": "index.js",
   "author": "Karan Sakhuja <kevin.sakhuja@gmail.com> (http://kevify.com)",
   "dependencies": {

@@ -20,13 +20,27 @@
     outputFile: './output/output/op_${count}.json'
   });
 
+
+  * @param opts.inputFile
+  * @param opts.outputFile
+  * @param opts.unique (Optional)
+  *        @return - If Not Unique, task is not run &
+  *                  data not passed down the pipeline
+  *
+  * @param opts.mapItem (Optional)
+  *        @return - If return null, task is not run &
+  *                  data not passed down the pipeline
+  *
+  * @param opts.task (Optional) - return cb();
+  * @param opts.taskConcurrency (Optional) Default = 10
+
   require('./utils').processFile({
     inputFile: './output/results.json',
     outputFile: './output/results2.json',
     unique: 'id', // Key for unique-ness (Optional)
     mapItem: function(i) { return i; } (Optional)
     task: function(i, cb) { return cb() }, (Optional)
-    taskConcurrency: 50 (Optional)
+    taskConcurrency: 10 (Optional)
   });
 
   const File = require('./utils').newFile({

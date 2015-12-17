@@ -20,6 +20,20 @@ require('./').fileSplitter({
   outputFile: './output/output/op_${count}.json'
 });
 
+/**
+ * @param opts.inputFile
+ * @param opts.outputFile
+ * @param opts.unique (Optional)
+ *        @return - If Not Unique, task is not run &
+ *                  data not passed down the pipeline
+ *
+ * @param opts.mapItem (Optional)
+ *        @return - If return null, task is not run &
+ *                  data not passed down the pipeline
+ *
+ * @param opts.task (Optional) - return cb();
+ * @param opts.taskConcurrency (Optional) Default = 10
+ **/
 require('./').processFile({
   inputFile: './output/results.json',
   outputFile: './output/results2.json',

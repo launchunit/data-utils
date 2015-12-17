@@ -16,6 +16,9 @@ test.serial('newFile', t => {
   File.write('Another String no Callback');
 
   File.write({ a:1, b: 2 });
+  File.write({ a:3, b: 4 });
+  File.write({ a:5, b: 6 });
+  File.write({ a:7, b: 8 });
 
   File.end(() => {
     t.pass('Close File');
@@ -36,7 +39,6 @@ test.serial('jsonToCsv', t => {
   .catch(function(e) {
     t.is(e, undefined);
   });
-
 });
 
 
@@ -53,16 +55,38 @@ test.serial('csvToJson', t => {
   .catch(function(e) {
     t.is(e, undefined);
   });
-
 });
 
 
 test.serial('fileSplitter', t => {
 
   require('../').fileSplitter({
-    maxRows: 10, // (Optional)
-    inputFile: '../output/results.json',
+    maxRows: 2, // (Optional)
+    inputFile: '../output/test3.json',
     outputFile: '../output/splits/${count}.json'
+  })
+  .then(function(res) {
+    t.ok(typeof res === 'number');
+  })
+  .catch(function(e) {
+    t.is(e, undefined);
+  });
+});
+
+
+test.serial('processFile', t => {
+
+  require('../').processFile({
+    inputFile: '../output/test3.json',
+    outputFile: '../output/test4.json',
+    mapItem: function(i) {
+      i.item = 'superman_'+Date.now();
+      return i;
+    },
+    task: function(i, cb) {
+      console.log(i);
+      return cb()
+    }
   })
   .then(function(res) {
     t.ok(typeof res === 'number');

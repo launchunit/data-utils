@@ -95,3 +95,17 @@ test.serial('processFile', t => {
     t.is(e, undefined);
   });
 });
+
+test.serial('dedupeFile', t => {
+
+  require('../').dedupeFile({
+    inputFile: '../output/test4.json',
+    uniqueField: 'a'
+  })
+  .then(function(res) {
+    t.ok(typeof res === 'number');
+  })
+  .catch(function(e) {
+    t.is(e, undefined);
+  });
+});

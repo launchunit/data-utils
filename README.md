@@ -20,6 +20,11 @@ require('./').fileSplitter({
   outputFile: './output/output/op_${count}.json'
 });
 
+require('./').dedupeFile({
+  inputFile: './output/test4.json',
+  uniqueField: 'a'
+});
+
 /**
  * @param opts.inputFile
  * @param opts.outputFile

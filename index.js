@@ -20,6 +20,11 @@
     outputFile: './output/output/op_${count}.json'
   });
 
+  require('./').dedupeFile({
+    inputFile: './output/test4.json',
+    uniqueField: 'a'
+  });
+
 
   * @param opts.inputFile
   * @param opts.outputFile
@@ -59,6 +64,7 @@ exports.jsonToCsv = require('./lib/json_to_csv');
 exports.fileSplitter = require('./lib/file_splitter');
 exports.processFile = require('./lib/process_file');
 exports.newFile = require('./lib/new_file');
+exports.dedupeFile = require('./lib/dedupe_file');
 
 // Zipcodes
 exports.zipcodes = require('./lib/zipcodes');

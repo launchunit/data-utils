@@ -109,3 +109,16 @@ test.serial('dedupeFile', t => {
     t.is(e, undefined);
   });
 });
+test.serial('dedupeFile When Data is String', t => {
+
+  require('../').dedupeFile({
+    inputFile: '../output/test2.csv',
+    uniqueField: null
+  })
+  .then(function(res) {
+    t.ok(typeof res === 'number');
+  })
+  .catch(function(e) {
+    t.is(e, undefined);
+  });
+});

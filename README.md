@@ -20,6 +20,8 @@ require('./').fileSplitter({
   outputFile: './output/output/op_${count}.json'
 });
 
+// If uniqueField=null, then entire string is matched instead
+// of the field of the object
 require('./').dedupeFile({
   inputFile: './output/test4.json',
   uniqueField: 'a'

@@ -55,6 +55,7 @@
 
   const File = require('./utils').newFile({
     outputFile: './output/results.json',
+    append: false (Default = false)
   });
   // Callback is optional
   File.write('some string');

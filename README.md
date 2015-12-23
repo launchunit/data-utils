@@ -53,6 +53,7 @@ require('./').processFile({
 // Not a Promise
 const File = require('./').newFile({
   outputFile: './output/results.json',
+  append: false (Default = false)
 });
 // Callback is optional
 File.write('some string');

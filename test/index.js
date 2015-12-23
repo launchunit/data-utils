@@ -6,6 +6,56 @@ test.serial('newFile', t => {
 
   const File = require('../').newFile({
     outputFile: '../output/test1.json',
+    append: false
+  });
+
+  // Callback is optional
+  File.write('Some String w/ Callback', () => {
+    t.ok('Callback of Some String');
+  });
+
+  File.write('Another String no Callback');
+
+  File.write({ a:1, b: 2 });
+  File.write({ a:3, b: 4 });
+  File.write({ a:5, b: 6 });
+  File.write({ a:7, b: 8 });
+
+  File.end(() => {
+    t.pass('Close File');
+  });
+});
+
+
+test.serial('newFile w/ Append Argument Not Passed', t => {
+
+  const File = require('../').newFile({
+    outputFile: '../output/test1_b.json'
+  });
+
+  // Callback is optional
+  File.write('Some String w/ Callback', () => {
+    t.ok('Callback of Some String');
+  });
+
+  File.write('Another String no Callback');
+
+  File.write({ a:1, b: 2 });
+  File.write({ a:3, b: 4 });
+  File.write({ a:5, b: 6 });
+  File.write({ a:7, b: 8 });
+
+  File.end(() => {
+    t.pass('Close File');
+  });
+});
+
+
+test.serial('newFile w/ Append Mode', t => {
+
+  const File = require('../').newFile({
+    outputFile: '../output/test1.json',
+    append: true
   });
 
   // Callback is optional
@@ -84,7 +134,6 @@ test.serial('processFile', t => {
       return i;
     },
     task: function(i, cb) {
-      console.log(i);
       return cb()
     }
   })
@@ -109,6 +158,8 @@ test.serial('dedupeFile', t => {
     t.is(e, undefined);
   });
 });
+
+
 test.serial('dedupeFile When Data is String', t => {
 
   require('../').dedupeFile({

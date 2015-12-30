@@ -6,8 +6,10 @@
   "dependencies": {
     "append-stream": "^1.2.2",
     "async": "^1.5.0",
+    "body-parser": "^1.14.2",
     "csv-parser": "^1.8.1",
     "event-stream": "^3.3.2",
+    "express": "^4.13.3",
     "fs-extra": "^0.26.2",
     "got": "^5.1.0",
     "json2csv-stream": "^0.1.3",

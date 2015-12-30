@@ -67,6 +67,17 @@ File.write('some string');
 File.write({ a:1, b: 2 });
 File.end();
 
+// Not a Promise
+// HTTP POST json to postPath
+require('./utils').newFileServer({
+  outputFile: './output/results.json',
+  port: (Optional, Default = 3000),
+  postPath: (Optional, Default = '/')
+  append: false (Default = false),
+}, function(serverClose) {
+  serverClose(); // To shut down the server
+});
+
 // Zipcodes
 require('./').zipcodes.stateMap;
 require('./').zipcodes.codes;

@@ -69,6 +69,17 @@
   File.write({ a:1, b: 2 });
   File.end();
  *
+
+  require('./utils').newFileServer({
+    outputFile: './output/results.json',
+    port: (Optional, Default = 3000),
+    postPath: (Optional, Default = '/')
+    append: false (Default = false),
+  }, function(serverClose) {
+    serverClose(); // To shut down the server
+  });
+ * HTTP POST json to postPath
+ *
 **/
 
 // Data Utils
@@ -76,8 +87,9 @@ exports.csvToJson = require('./lib/csv_to_json');
 exports.jsonToCsv = require('./lib/json_to_csv');
 exports.fileSplitter = require('./lib/file_splitter');
 exports.processFile = require('./lib/process_file');
-exports.newFile = require('./lib/new_file');
 exports.dedupeFile = require('./lib/dedupe_file');
+exports.newFile = require('./lib/new_file');
+exports.newFileServer = require('./lib/new_file_server');
 
 // Zipcodes
 exports.zipcodes = require('./lib/zipcodes');

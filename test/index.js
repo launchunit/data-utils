@@ -2,7 +2,7 @@
 const test = require('ava');
 
 
-test.serial('newFile', t => {
+test.cb('newFile', t => {
 
   const File = require('../').newFile({
     outputFile: '../output/test1.json',
@@ -23,6 +23,7 @@ test.serial('newFile', t => {
 
   File.end(() => {
     t.pass('Close File');
+    t.end();
   });
 });
 
@@ -156,7 +157,7 @@ test.serial('processFile mapItemAsync', t => {
 
       setTimeout(function() {
         return cb(i);
-      }, 1000);
+      }, 5000);
     },
     task: function(i, cb) {
       return cb()
@@ -197,5 +198,16 @@ test.serial('dedupeFile When Data is String', t => {
   })
   .catch(function(e) {
     t.is(e, undefined);
+  });
+});
+
+
+test.cb('newFileServer', t => {
+
+  require('../').newFileServer({
+    outputFile: '../output/test_server.json',
+    append: true
+  }, function(serverClose) {
+    t.ok(typeof serverClose === 'function');
   });
 });

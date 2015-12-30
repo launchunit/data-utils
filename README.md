@@ -81,8 +81,3 @@ require('./utils').newFileServer({
 require('./').zipcodes.stateMap;
 require('./').zipcodes.codes;
 ```
-
-----------
-
-#### ToDo:
-1. Refactor - for `newFileServer` use `newFile` module internally.

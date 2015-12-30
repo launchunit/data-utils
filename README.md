@@ -72,7 +72,6 @@ File.end();
 require('./utils').newFileServer({
   outputFile: './output/results.json',
   port: (Optional, Default = 3000),
-  postPath: (Optional, Default = '/')
   append: false (Default = false),
 }, function(serverClose) {
   serverClose(); // To shut down the server
@@ -82,3 +81,8 @@ require('./utils').newFileServer({
 require('./').zipcodes.stateMap;
 require('./').zipcodes.codes;
 ```
+
+----------
+
+#### ToDo:
+1. Refactor - for `newFileServer` use `newFile` module internally.

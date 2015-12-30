@@ -78,7 +78,7 @@ test.serial('newFile w/ Append Mode', t => {
 
 test.serial('jsonToCsv', t => {
 
-  require('../').jsonToCsv({
+  return require('../').jsonToCsv({
     separator: '|', // (Optional)
     inputFile: '../output/test1.json',
     outputFile: '../output/test2.csv'
@@ -94,7 +94,7 @@ test.serial('jsonToCsv', t => {
 
 test.serial('csvToJson', t => {
 
-  require('../').csvToJson({
+  return require('../').csvToJson({
     separator: '|', // (Optional)
     inputFile: '../output/test2.csv',
     outputFile: '../output/test3.json'
@@ -110,7 +110,7 @@ test.serial('csvToJson', t => {
 
 test.serial('fileSplitter', t => {
 
-  require('../').fileSplitter({
+  return require('../').fileSplitter({
     maxRows: 2, // (Optional)
     inputFile: '../output/test3.json',
     outputFile: '../output/splits/${count}.json'
@@ -126,7 +126,7 @@ test.serial('fileSplitter', t => {
 
 test.serial('processFile', t => {
 
-  require('../').processFile({
+  return require('../').processFile({
     inputFile: '../output/test3.json',
     outputFile: '../output/test4.json',
     mapItem: function(i) {
@@ -145,9 +145,35 @@ test.serial('processFile', t => {
   });
 });
 
+
+test.serial('processFile mapItemAsync', t => {
+
+  return require('../').processFile({
+    inputFile: '../output/test4.json',
+    outputFile: '../output/test5.json',
+    mapItemAsync: function(i, cb) {
+      i.item = 'superman_'+Date.now();
+
+      setTimeout(function() {
+        return cb(i);
+      }, 1000);
+    },
+    task: function(i, cb) {
+      return cb()
+    }
+  })
+  .then(function(res) {
+    t.ok(typeof res === 'number');
+  })
+  .catch(function(e) {
+    t.is(e, undefined);
+  });
+});
+
+
 test.serial('dedupeFile', t => {
 
-  require('../').dedupeFile({
+  return require('../').dedupeFile({
     inputFile: '../output/test4.json',
     uniqueField: 'a'
   })
@@ -162,7 +188,7 @@ test.serial('dedupeFile', t => {
 
 test.serial('dedupeFile When Data is String', t => {
 
-  require('../').dedupeFile({
+  return require('../').dedupeFile({
     inputFile: '../output/test2.csv',
     uniqueField: null
   })

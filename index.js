@@ -41,6 +41,13 @@
   *        @return - If return null, task is not run &
   *                  data not passed down the pipeline
   *
+  * @param opts.mapItemAsync (Optional)
+  *        @return cb(data)
+  *          If return null, task is not run &
+  *          data not passed down the pipeline
+
+  * Note: mapItem & mapItemAsync are exclusive
+  *
   * @param opts.task (Optional) - return cb();
   * @param opts.taskConcurrency (Optional) Default = 10
 

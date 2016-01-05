@@ -44,6 +44,7 @@ require('./').dedupeFile({
  *          data not passed down the pipeline
 
  * Note: mapItem & mapItemAsync are exclusive
+ * @param opts.mapAsyncConcurrency (Optional) Default = 10
  *
  * @param opts.task (Optional) - return cb();
  * @param opts.taskConcurrency (Optional) Default = 10

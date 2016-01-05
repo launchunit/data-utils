@@ -172,6 +172,32 @@ test.serial('processFile mapItemAsync', t => {
 });
 
 
+test.serial('processFile mapItemAsync w/ mapAsyncConcurrency', t => {
+
+  return require('../').processFile({
+    inputFile: '../output/test4.json',
+    outputFile: '../output/test5.json',
+    mapItemAsync: function(i, cb) {
+      i.item = 'superman_'+Date.now();
+
+      setTimeout(function() {
+        return cb(i);
+      }, 2000);
+    },
+    mapAsyncConcurrency: 2,
+    task: function(i, cb) {
+      return cb()
+    }
+  })
+  .then(function(res) {
+    t.ok(typeof res === 'number');
+  })
+  .catch(function(e) {
+    t.is(e, undefined);
+  });
+});
+
+
 test.serial('dedupeFile', t => {
 
   return require('../').dedupeFile({

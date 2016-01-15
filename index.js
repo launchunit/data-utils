@@ -88,8 +88,11 @@ exports.jsonToCsv = require('./lib/json_to_csv');
 exports.fileSplitter = require('./lib/file_splitter');
 exports.processFile = require('./lib/process_file');
 exports.dedupeFile = require('./lib/dedupe_file');
-exports.newFile = require('./lib/new_file');
-exports.newFileServer = require('./lib/new_file_server');
 
 // Zipcodes
 exports.zipcodes = require('./lib/zipcodes');
+
+// FileSystem Utils
+exports.newFile = require('./lib/new_file');
+exports.newFileServer = require('./lib/new_file_server');
+exports.removeFiles = require('./lib/remove_files');

@@ -71,9 +71,11 @@ File.end();
 // Not a Promise
 // HTTP POST json to postPath
 require('./utils').newFileServer({
-  outputFile: './output/results.json',
   port: (Optional, Default = 3000),
   append: false (Default = false),
+  postPath: {
+    '*': '../output/results.json'
+  }
 }, function(serverClose) {
   serverClose(); // To shut down the server
 });

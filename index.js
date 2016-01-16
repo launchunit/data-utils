@@ -72,9 +72,11 @@
  *
 
   require('./utils').newFileServer({
-    outputFile: './output/results.json',
     port: (Optional, Default = 3000),
     append: false (Default = false),
+    postPath: {
+      '*': '../output/test_server.json'
+    }
   }, function(serverClose) {
     serverClose(); // To shut down the server
   });

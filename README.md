@@ -29,7 +29,7 @@ require('./').dedupeFile({
 
 /**
  * @param opts.inputFile
- * @param opts.outputFile
+ * @param opts.outputFile (Optional)
  * @param opts.unique (Optional)
  *        @return - If Not Unique, task is not run &
  *                  data not passed down the pipeline

@@ -147,6 +147,27 @@ test.serial('processFile', t => {
 });
 
 
+test.serial('processFile w/o outputFile', t => {
+
+  return require('../').processFile({
+    inputFile: '../output/test3.json',
+    mapItem: function(i) {
+      i.item = 'superman_'+Date.now();
+      return i;
+    },
+    task: function(i, cb) {
+      return cb()
+    }
+  })
+  .then(function(res) {
+    t.ok(typeof res === 'number');
+  })
+  .catch(function(e) {
+    t.is(e, undefined);
+  });
+});
+
+
 test.serial('processFile mapItemAsync', t => {
 
   return require('../').processFile({

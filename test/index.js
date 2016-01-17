@@ -252,10 +252,16 @@ test.serial('dedupeFile When Data is String', t => {
 test.cb('newFileServer', t => {
 
   require('../').newFileServer({
-    append: true,
-    postPath: {
-      '/Path1': '../output/test_server_path1.json',
-      '/path2': '../output/test_server_path2.json'
+    // append: true,
+    routes: {
+      '/Path1': {
+        post: '../output/test_server_path1.json',
+        get: '../output/test4.json',
+      },
+      '/path2': {
+        post: '../output/test_server_path2.json',
+        get: '../output/test5.json',
+      }
     }
   }, function(serverClose) {
     t.ok(typeof serverClose === 'function');

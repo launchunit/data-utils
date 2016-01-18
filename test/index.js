@@ -267,3 +267,20 @@ test.cb('newFileServer', t => {
     t.ok(typeof serverClose === 'function');
   });
 });
+
+
+test.serial('diffFile', t => {
+
+  return require('../').diffFile({
+    inputFile: '../output/test_diff.json',
+    inputFileAgainst: '../output/test_diff_against.json',
+    outputFile: '../output/test_diff_result.json',
+    uniqueField: 'id'
+  })
+  .then(function(res) {
+    t.ok(typeof res === 'number');
+  })
+  .catch(function(e) {
+    t.is(e, undefined);
+  });
+});

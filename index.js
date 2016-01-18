@@ -20,7 +20,6 @@
     outputFile: './output/output/op_${count}.json'
   });
 
-
   * @param opts.inputFile
   * @param opts.uniqueField {String}
       If null, then entire string is matched instead
@@ -30,6 +29,16 @@
     uniqueField: 'a'
   });
 
+ * @param opts.inputFile
+ * @param opts.inputFileAgainst
+ * @param opts.outputFile
+ * @param opts.uniqueField {String}
+  require('./').diffFile({
+    inputFile: './output/test_diff.json',
+    inputFileAgainst: './output/test_diff_against.json',
+    outputFile: './output/test_diff_result.json',
+    uniqueField: 'id'
+  });
 
   * @param opts.inputFile
   * @param opts.outputFile (Optional)
@@ -93,6 +102,7 @@ exports.jsonToCsv = require('./lib/json_to_csv');
 exports.fileSplitter = require('./lib/file_splitter');
 exports.processFile = require('./lib/process_file');
 exports.dedupeFile = require('./lib/dedupe_file');
+exports.diffFile = require('./lib/diff_file');
 
 // Zipcodes
 exports.zipcodes = require('./lib/zipcodes');
